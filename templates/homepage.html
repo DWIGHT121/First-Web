@@ -5,5 +5,18 @@ This is the homepage
 {% endblock%}
 
 {% block body%}
-<h1>Hello everyone</h1>
+    <h1>Chalachitra Reviews</h1>
+        <form class="" action="/homepage" method="POST">
+        Name of the movie:<input type="text" name="Movie name" value="" placeholder="Name of the movie" id='nameofmovie'>
+        <br><br>
+        Poster of the movie<input type="Link" name="Image" value="" id='poster_link'>
+        <br><br>
+        Language of the movie<input type="text" name="Language" value="" placeholder="Language" id='language'>
+        <br><br>
+        <input type="submit" name="" value="POST">
+      </form>
+  {% for film in films %}
+      <h3>Movie:{{ film.name }}</h3>
+      <h3>Language: {{ film.language }}</h3>
+  {% endfor %}
 {% endblock %}
