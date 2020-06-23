@@ -1,0 +1,20 @@
+{% extends 'indesx.html' %}
+{% blovk title %}
+Sign Up
+{% endblock %}
+
+{% block body %}
+<h1>Sign Up Page</h1>
+<form class="" action="/signup" method="post">
+  First Name: <input type="text" name="" value="" id = 'f_name'>
+  Last Name: <input type="text" name="" value="" id = 'l_name'>
+  email: <input type="email" name="" value="" id = 'email'>
+  password: <input type="password" name="" value="" id='password'>
+  confirm_password: <input type="password" name="" value="">
+  {% if password != confirm_password %}
+    <p>Sorry, the password doesnot match with the password above.</p>
+  {% endif %}
+  <input type="submit" name="" value="Sign Up">
+  <p>Already have an account?</p>
+  <a href="/homepage">Log In </a>
+</form>
