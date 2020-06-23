@@ -33,9 +33,9 @@ def basic():
 @app.route('/homepage', methods = ['GET','POST'])
 def homepage():
     if request.method == 'POST':
-        movie_name = request.form('Movie name')
-        poster = request.form('Image')
-        language = request.form('Language')
+        movie_name = request.form['Movie name']
+        poster = request.form['Image']
+        language = request.form['Language']
         addedmovie = Movies(name=movie_name, language = language, link = poster)
         db.session.add(addedmovie)
         db.session.commit()
@@ -43,6 +43,7 @@ def homepage():
 
     else:
         allmovies = Movies.query.order_by(Movies.date_posted).all()
+        # return "{{ Movies.date_posted}}"
         return render_template("homepage.html", films=allmovies)
 
 @app.route('/signup', methods = ['GET','POST'])
