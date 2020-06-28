@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block body %}
+<h1>Sign Up Page</h1>
+<form class="" action="/signup" method="post">
+  First Name: <input type="text" name="f_name" value="" id='f_name'>
+  <br><br>
+  Last Name: <input type="text" name="l_name" value="" id='l_name'>
+  <br><br>
+  email: <input type="email" name="email" value="" id='email'>
+  <br><br>
+  password: <input type="password" name="password" value="" id='password'>
+  <br><br>
+  confirm_password: <input type="password" name="" value="">
+  <br><br>
+  {% if password != confirm_password %}
+  <p>Sorry, the password doesnot match with the password above.</p>
+  {% endif %}
+  <input type="submit" name="" value="Sign Up">
+  <br><br>
+  <p>Already have an account?</p>
+  <a href="/login">Log In </a>
+</form>
+
+{% for user in users%}
+<p>Username: {{ user.f_name }}</p>
+<h1>Email: {{ user.email }}</h1>
+{% endfor%}
+
+{% endblock %}
