@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -81,9 +81,9 @@ def login():
             if email == User_data.query.all()[i].email:
                 temp_id = i
         if password == User_data.query.all()[temp_id].password:
-            name = User_data.query.all(
+            names = User_data.query.all(
             )[temp_id].f_name + User_data.query.all()[temp_id].l_name
-            return render_template("/logged_homepage.html", name=name)
+            return redirect("login.html")
     else:
         return render_template("login.html")
 
