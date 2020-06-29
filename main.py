@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -74,16 +74,23 @@ def signup():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form['email']
+        emails = request.form['email']
         password = request.form['password']
-        length = len(User_data.query.all())
-        for i in range(0, length-1):
-            if email == User_data.query.all()[i].email:
-                temp_id = i
-        if password == User_data.query.all()[temp_id].password:
-            names = User_data.query.all(
-            )[temp_id].f_name + User_data.query.all()[temp_id].l_name
-            return redirect("login.html")
+        email_data = User_data.query.filter_by(email=emails).first()
+        password_data = User_data.query.filter_by(password=password).first()
+
+        if email_data is None:
+            flash("No Email found", "danger")
+            return render_template("login.html")
+
+        else:
+            if password_data is None:
+                flash("Password incorect", "danger")
+                return redirect("login.html")
+
+            else:
+                return redirect("success.html")
+
     else:
         return render_template("login.html")
 
